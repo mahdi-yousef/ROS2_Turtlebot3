@@ -55,8 +55,9 @@ on WSL2.
 ## 1. Clone this repository
 
 ```bash
-git clone git@github.com:<your-username>/<this-repo>.git
-cd <this-repo>
+cd ~
+git clone git@github.com:mahdi-yousef/ROS2_Turtlebot3.git
+cd ROS2_Turtlebot3
 ```
 
 ## 2. Build the base image
@@ -95,7 +96,7 @@ mkdir -p ~/tb3_extra/turtlebot3_simulations
 
 ## 4. docker-compose.yml
 
-Also in `docker/`:
+You can see in `docker/` the following yaml file:
 ```yaml
 services:
   turtlebot3:
@@ -132,20 +133,17 @@ Two mounts matter:
   `turtlebot3_simulations`, ROBOTIS's Gazebo simulation packages, added in
   step 6.
 - `../src/custom_packages` (this repo's own `src/custom_packages/`, sibling
-  to `docker/`) → the project's own packages (`my_robot_control`,
+  to `docker/`) → my project's own packages created by me using turtle nest (`my_robot_control`,
   `my_robot_bringup`). No separate setup needed for this one — it's part of
   the repo and mounts automatically on clone.
 
-Start the container:
+Start the container then open a terminal in it as follows:
 ```bash
 docker compose up -d
 docker exec -it turtlebot3 bash
 ```
 
-> Use `docker compose stop` / `docker compose start` to pause and resume,
-> not `down`/`up`. `down` destroys the container — anything not covered by
-> a bind mount above (`~/turtlebot3_ws/build`, `install`, `log`) is lost
-> and must be rebuilt. `stop`/`start` preserve all of it.
+> In WSL use `docker stop turtlebot3` to stop the container. Avoid using `docker compose down` so you don't destroy the container and lose built progress.
 
 ## 5. Confirm the environment
 
