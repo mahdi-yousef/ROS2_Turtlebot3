@@ -19,7 +19,7 @@ on WSL2.
 | Simulator | Gazebo Classic (`gazebo-ros-pkgs`) |
 | Robot | TurtleBot3 Burger (simulated) |
 | Container | built from `docker/Dockerfile` (ROBOTIS's official Humble image) |
-| Custom world | `warehouse_world.sdf` — see [World & Model Sources](#world--model-sources) |
+| Custom world | `warehouse_world.sdf`|
 
 ---
 
