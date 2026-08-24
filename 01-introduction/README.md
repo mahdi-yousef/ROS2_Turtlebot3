@@ -32,16 +32,7 @@ on WSL2.
 
 2. **Docker**, working inside WSL2 — Docker Desktop with WSL integration enabled, or Docker Engine installed directly inside WSL.
 
-3. **Increase WSL2's memory allocation before building anything.** Compiling ROS2/Gazebo packages under WSL2's default memory limit reliably gets the compiler killed mid-build.
-
-   Create/edit `C:\Users\<YourUsername>\.wslconfig`:
-   ```ini
-   [wsl2]
-   memory=8GB
-   processors=4
-   swap=4GB
-   ```
-   Then in PowerShell:
+3.  Then in PowerShell:
    ```powershell
    wsl --shutdown
    ```
