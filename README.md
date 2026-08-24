@@ -29,7 +29,6 @@ ROS2_Turtlebot3/
 ├── docker/
 │   ├── Dockerfile              # ROBOTIS's official Dockerfile (unmodified)
 │   └── docker-compose.yml
-│   
 └── src/
     └── custom_packages/
         ├── my_robot_control/    # obstacle_avoider, waypoint_follower
