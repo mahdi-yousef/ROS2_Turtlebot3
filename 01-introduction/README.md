@@ -25,35 +25,18 @@ on WSL2.
 
 ## Prerequisites
 
-1. **WSL2** with an Ubuntu distro installed:
-   ```powershell
-   wsl --install
-   ```
-
-2. **Docker**, working inside WSL2 — Docker Desktop with WSL integration enabled, or Docker Engine installed directly inside WSL.
-
-3.  Then in PowerShell:
-   ```powershell
-   wsl --shutdown
-   ```
-   Wait ~10 seconds before reopening WSL.
-
-   > If GUI windows later show only a taskbar entry with no content
-   > (sometimes titled `[WARN:COPY MODE]`) when opening Gazebo/RViz — known
-   > WSLg rendering bug, unrelated to ROS2:
-   > ```powershell
-   > wsl --update
-   > wsl --shutdown
-   > ```
-   > If it persists, run this once on the WSL host (not in the container):
-   > ```bash
-   > sudo mount -t tmpfs tmpfs /mnt/shared_memory
-   > ```
+- WSL2 with Ubuntu 22.04
+- Intel or AMD processor (with x64 processor architecture). This is the reason why the Docker container won't work 
+directly for example on Apple Silicon, Raspberry or Jetson platforms.
+- A computer with sufficient processing power to run Gazebo simulation smoothly.
+- [Docker](https://docs.docker.com/engine/install/ubuntu/). Follow the link for the official tutorial
+and the latest installation instructions.
+- Git (`sudo apt install git`)
 
 ---
 
 ## 1. Clone this repository
-
+In WSL
 ```bash
 cd ~
 git clone git@github.com:mahdi-yousef/ROS2_Turtlebot3.git
