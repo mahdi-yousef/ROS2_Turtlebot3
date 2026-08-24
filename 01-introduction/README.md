@@ -150,9 +150,15 @@ docker exec -it turtlebot3 bash
 ```bash
 export TURTLEBOT3_MODEL=burger
 echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc
+source ~/.bashrc
 echo $ROS_DISTRO
+echo $TURTLEBOT3_MODEL
 ```
-Should print `humble`.
+Should print 
+```bash
+humble
+burger
+```
 
 ## 6. Add Gazebo simulation support
 
@@ -161,26 +167,10 @@ cd ~/turtlebot3_ws/src
 git clone -b humble https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git turtlebot3_simulations
 ```
 
-```bash
-colcon list | grep turtlebot3_gazebo
-```
-> Should print exactly one line. Two means a folder got cloned inside
-> another already-mounted directory tree by mistake — move the persistent
-> folder outside any other mounted path and re-clone.
-
 ## 7. Install dependencies and build
 
 ```bash
 apt-get update
-```
-> Always run this before `rosdep install` in this container — its apt
-> package index is stale/cleared by default, causing misleading
-> `E: Unable to locate package ros-humble-<pkg>` errors for packages that
-> genuinely exist, including `gazebo-ros-pkgs`. Skipping this surfaces
-> later as `CMake Error ... Could not find a package configuration file
-> provided by "gazebo"` during the build below.
-
-```bash
 cd ~/turtlebot3_ws
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
@@ -190,12 +180,6 @@ rosdep install --from-paths src --ignore-src -r -y
 MAKEFLAGS="-j2" colcon build --symlink-install --parallel-workers 1
 source install/setup.bash
 ```
-> `c++: fatal error: Killed signal terminated program cc1plus` — the Linux
-> OOM killer; WSL2 ran out of memory mid-compile. Confirm the `.wslconfig`
-> fix from Prerequisites is applied (`wsl --shutdown` fully restarts WSL),
-> and keep `--parallel-workers 1`/`MAKEFLAGS="-j2"` even with more memory
-> allocated.
->
 > `1 package failed: turtlebot3_simulations` with everything else
 > succeeding — it's an empty metapackage referencing
 > `turtlebot3_manipulation_gazebo` (arm variant, not built here). Safe to
@@ -215,14 +199,7 @@ ros2 launch my_robot_bringup custom_world_demo.launch.py \
 ```
 > Robot not visible in Gazebo — confirm `echo $TURTLEBOT3_MODEL`, then
 > check Gazebo's Models panel and right-click the robot entry → Follow.
->
-> `gzserver` dies immediately with `Entity [burger] already exists`, exit
-> code 255 — an orphaned process from a previous crashed/interrupted
-> launch:
-> ```bash
-> pkill -9 gzserver gzclient
-> ```
-> If that doesn't resolve it, `docker restart turtlebot3` and relaunch.
+> If that doesn't resolve it, in WSL `docker restart turtlebot3` and relaunch.
 
 Gazebo should open (via WSLg, no extra X server setup needed) showing the
 warehouse with TurtleBot3 spawned inside it. See folders `02` through `04`
@@ -233,14 +210,8 @@ for the rest of the project once this is confirmed working.
 ## World & Model Sources
 
 `warehouse_world.sdf` (in `src/custom_packages/my_robot_bringup/worlds/`)
-was downloaded from: **[fill in the exact source URL/site you downloaded it
-from here]**. It contains no external model references (self-contained
+was downloaded from: **[https://app.gazebosim.org/hboc/worlds/simple_colored_warehouse]**. It contains no external model references (self-contained
 world file, no separate `models/` folder needed).
-
-> Before publishing: confirm the original source's license permits
-> redistribution, and credit it here explicitly. If unclear or restrictive,
-> link to the source instead of committing the file directly, and add a
-> download step here in its place.
 
 ---
 
