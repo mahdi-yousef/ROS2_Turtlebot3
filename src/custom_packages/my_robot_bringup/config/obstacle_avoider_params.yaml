@@ -1,0 +1,6 @@
+obstacle_avoider:
+  ros__parameters:
+    stop_distance: 0.45      # meters
+    forward_speed: 0.15      # m/s
+    turn_speed: 0.6          # rad/s
+    forward_cone_deg: 40.0

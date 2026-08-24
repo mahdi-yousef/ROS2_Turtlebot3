@@ -1,0 +1,16 @@
+# colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+
+# Maps (keep small representative ones intentionally, ignore bulk binaries)
+src/custom_packages/my_robot_bringup/maps/*.pgm
+
+# OS/editor
+.DS_Store
+.vscode/
+*.swp

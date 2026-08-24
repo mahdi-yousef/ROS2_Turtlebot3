@@ -1,0 +1,12 @@
+waypoint_follower:
+  ros__parameters:
+    frame_id: map
+    # Flat list of (x, y, yaw) triples in map frame. Read real coordinates
+    # off your saved map in RViz before using this for real.
+    waypoints:
+      - 1.0
+      - 0.0
+      - 0.0
+      - 1.0
+      - 1.0
+      - 1.57
