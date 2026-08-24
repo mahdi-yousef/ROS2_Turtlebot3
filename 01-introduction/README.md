@@ -155,7 +155,7 @@ echo $ROS_DISTRO
 echo $TURTLEBOT3_MODEL
 ```
 Should print 
-```bash
+```
 humble
 burger
 ```
@@ -218,17 +218,16 @@ world file, no separate `models/` folder needed).
 ## Repository Layout Reference
 
 ```
-this-repo/
-├── 01-introduction/          (this folder)
-├── 02-existing-nodes/
-├── 03-slam-and-navigation/
-├── 04-custom-nodes/
+ROS2_Turtlebot3/
+├── 01-introduction/
+├── 02-turtlebot3_nodes/
+├── 03-slam and navigation/
+├── 04-custom_nodes/
 ├── docker/
 │   ├── Dockerfile              # ROBOTIS's official Dockerfile (unmodified)
-│   ├── docker-compose.yml
-│   └── docker-compose.checkpoint.yml
+│   └── docker-compose.yml
 └── src/
     └── custom_packages/
-        ├── my_robot_control/
-        └── my_robot_bringup/
+        ├── my_robot_control/    # obstacle_avoider, waypoint_follower
+        └── my_robot_bringup/    # launch files, config, worlds, maps
 ```
