@@ -2,8 +2,7 @@
 nav_demo.launch.py
 
 Launches TurtleBot3 in the warehouse world, brings up turtlebot3_navigation2
-(AMCL + planners + controllers) against a previously-saved map, and starts
-your custom waypoint_follower node to autonomously visit a sequence of goals.
+(AMCL + planners + controllers) against a previously-saved map.
 
 Uses turtlebot3_navigation2 rather than a bare nav2_bringup include, matching
 the packages actually shipped in the robotis/turtlebot3:humble-latest image.
