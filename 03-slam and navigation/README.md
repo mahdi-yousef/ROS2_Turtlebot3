@@ -6,7 +6,10 @@ This folder covers the SLAM and Nav2 workflow, using the launch files I built in
 
 Location: `src/custom_packages/my_robot_bringup/launch/`
 
-- **`custom_world_demo.launch.py`**: spawns TurtleBot3 in the warehouse world. This is the building block the other two include.
+- **`custom_world_demo.launch.py`**: spawns TurtleBot3 in the warehouse world. This is the building block the other two include. Same structure as ROBOTIS's turtlebot3_world.launch.py (gzserver + gzclient +
+robot_state_publisher + spawn_turtlebot3), but the world file is a launch
+argument instead of hardcoded -- point it at any .world file you've placed
+in this package's worlds/ folder (or anywhere else on disk).
 - **`slam_demo.launch.py`**: includes `custom_world_demo.launch.py`, then adds `turtlebot3_cartographer` for mapping and opens RViz.
 - **`nav_demo.launch.py`**: includes `custom_world_demo.launch.py`, then adds `turtlebot3_navigation2` against a saved map and opens RViz.
 
