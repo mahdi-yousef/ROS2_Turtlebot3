@@ -179,7 +179,7 @@ source install/setup.bash
 ```bash
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ```
-This must open the standard world file that comes with the turtlebot3 packages as shown below:
+This must open the standard world file that comes with the turtlebot3_gazebo package `~/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_gazebo/worlds/turtlebot3_world.world`as shown below:
 ![](screenshots/world_launch.png)
 > Robot not visible in Gazebo — confirm `echo $TURTLEBOT3_MODEL`, then
 > check Gazebo's Models panel and right-click the robot entry → Follow.
