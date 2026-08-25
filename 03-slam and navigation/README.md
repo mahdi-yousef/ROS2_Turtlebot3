@@ -7,8 +7,8 @@ This folder covers the SLAM and Nav2 workflow, using the launch files I built in
 Location: `src/custom_packages/my_robot_bringup/launch/`
 
 - **`custom_world_demo.launch.py`**: spawns TurtleBot3 in the warehouse world. This is the building block the other two include.
-- **`slam_demo.launch.py`**: includes `custom_world_demo.launch.py`, then adds `turtlebot3_cartographer` for mapping. Uses a tuned Cartographer config at `config/warehouse_cartographer.lua`, since the stock config is built for a small demo room, not a warehouse.
-- **`nav_demo.launch.py`**: includes `custom_world_demo.launch.py`, then adds `turtlebot3_navigation2` against a saved map, plus the `waypoint_follower` node (optional, toggle with `run_waypoint_follower:=false`).
+- **`slam_demo.launch.py`**: includes `custom_world_demo.launch.py`, then adds `turtlebot3_cartographer` for mapping and opens RViz.
+- **`nav_demo.launch.py`**: includes `custom_world_demo.launch.py`, then adds `turtlebot3_navigation2` against a saved map and opens RViz.
 
 I built them this way, one launch file including smaller ones, so the world spawn logic isn't duplicated across SLAM and navigation.
 
