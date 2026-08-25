@@ -59,8 +59,7 @@ SLAM (mapping):
 ```bash
 ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=true
 ```
-driving to build a map, saving it, and the tuned config used
-for the warehouse environment is covered in
+driving to build a map, saving it  is covered in
 [`03-slam and navigation`](../03-slam%20and%20navigation/).
 
 ### `turtlebot3_navigation2`
