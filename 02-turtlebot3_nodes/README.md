@@ -28,7 +28,12 @@ ros2 pkg executables <package_name>    # every ros2 run-able node in a given pac
 ---
 
 ## Used in simulation
-
+Before running and trying differenet nodes, first make sure to open the container from the image downloaded in section 01 as follows:
+```bash
+cd ~/ROS2_Turtlebot3/docker
+docker compose up -d                 #run the container
+docker exec -it turtlebot3 bash      #open a new terminal in the container
+```
 ### `turtlebot3_teleop`
 
 Manual keyboard control. One node:
