@@ -22,8 +22,8 @@ ros2 pkg executables <package_name>    # every ros2 run-able node in a given pac
 | `turtlebot3_navigation2` | Nav2 launch file | **Yes** |
 | `turtlebot3_example` | Demo nodes | **Yes** |
 | `turtlebot3_description` | URDF/robot model | Used indirectly (Gazebo spawns from it), not something run directly |
-| `turtlebot3_node` | Low-level hardware driver | No real hardware only |
-| `turtlebot3_bringup` | Real hardware bringup launch files | No real hardware only |
+| `turtlebot3_node` | Low-level hardware driver | No, real hardware only |
+| `turtlebot3_bringup` | Real hardware bringup launch files | No, real hardware only |
 
 ---
 
@@ -85,19 +85,19 @@ written from scratch in a similar shape.
 
 ## Not used in simulation (real hardware only)
 
-- **`turtlebot3_node`** — the low-level driver that talks to the real
+- **`turtlebot3_node`** the low-level driver that talks to the real
   robot's microcontroller over serial (motor commands, IMU, battery
   status). Gazebo simulates all of this instead.
-- **`turtlebot3_bringup`** — launch files for bringing up the real robot
+- **`turtlebot3_bringup`** launch files for bringing up the real robot
   (starts `turtlebot3_node`, LiDAR driver, etc.). This project's
   equivalent is `custom_world_demo.launch.py` in `my_robot_bringup`, which
   spawns the robot in Gazebo instead.
 
 ---
 
-## Quick sanity check
+## Quick check
 
-With the simulation running (see `01-introduction`, step 8):
+With the simulation running:
 ```bash
 ros2 node list
 ros2 run rqt_graph rqt_graph
