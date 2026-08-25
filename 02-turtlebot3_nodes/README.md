@@ -1,7 +1,7 @@
 # 02 — TurtleBot3 Nodes
 
 What ships in the base image out of the box, before any custom code is
-introduced — from `docker/Dockerfile`, this container installs `turtlebot3`,
+introduced from `docker/Dockerfile`, this container installs `turtlebot3`,
 `turtlebot3-cartographer`, `turtlebot3-navigation2`, `nav2-bringup`, plus
 hardware driver packages, and clones/builds `ROBOTIS-GIT/turtlebot3` itself
 at image-build time.
@@ -22,8 +22,8 @@ ros2 pkg executables <package_name>    # every ros2 run-able node in a given pac
 | `turtlebot3_navigation2` | Nav2 launch file | **Yes** |
 | `turtlebot3_example` | Demo nodes | **Yes** |
 | `turtlebot3_description` | URDF/robot model | Used indirectly (Gazebo spawns from it) — not something run directly |
-| `turtlebot3_node` | Low-level hardware driver | No — real hardware only |
-| `turtlebot3_bringup` | Real hardware bringup launch files | No — real hardware only |
+| `turtlebot3_node` | Low-level hardware driver | No real hardware only |
+| `turtlebot3_bringup` | Real hardware bringup launch files | No real hardware only |
 
 ---
 
@@ -41,7 +41,7 @@ Manual keyboard control. One node:
 ros2 pkg executables turtlebot3_teleop
 # -> turtlebot3_teleop teleop_keyboard
 ```
-Run the simulation as described in section 01-8 then open new WSL terminal and open a new terminal in the container using `docker exec -it turtlebot3 bash`:
+Run the simulation as described in section [`01-8`](../01-introduction/) then open new WSL terminal and open a new terminal in the container using `docker exec -it turtlebot3 bash`:
 ```bash
 ros2 run turtlebot3_teleop teleop_keyboard
 ```
@@ -59,8 +59,8 @@ SLAM (mapping):
 ```bash
 ros2 launch turtlebot3_cartographer cartographer.launch.py use_sim_time:=true
 ```
-Full usage — driving to build a map, saving it, and the tuned config used
-for the warehouse environment — is covered in
+driving to build a map, saving it, and the tuned config used
+for the warehouse environment is covered in
 [`03-slam and navigation`](../03-slam%20and%20navigation/).
 
 ### `turtlebot3_navigation2`
@@ -78,7 +78,7 @@ Small demo nodes ROBOTIS ships for learning purposes:
 ```bash
 ros2 pkg executables turtlebot3_example
 ```
-A useful reference for node structure/style — see `04-custom_nodes` for
+A useful reference for node structure/style, see `04-custom_nodes` for
 this project's own custom nodes (`obstacle_avoider`, `waypoint_follower`),
 written from scratch in a similar shape.
 
