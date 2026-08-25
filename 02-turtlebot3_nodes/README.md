@@ -21,7 +21,7 @@ ros2 pkg executables <package_name>    # every ros2 run-able node in a given pac
 | `turtlebot3_cartographer` | SLAM launch file | **Yes** |
 | `turtlebot3_navigation2` | Nav2 launch file | **Yes** |
 | `turtlebot3_example` | Demo nodes | **Yes** |
-| `turtlebot3_description` | URDF/robot model | Used indirectly (Gazebo spawns from it) — not something run directly |
+| `turtlebot3_description` | URDF/robot model | Used indirectly (Gazebo spawns from it), not something run directly |
 | `turtlebot3_node` | Low-level hardware driver | No real hardware only |
 | `turtlebot3_bringup` | Real hardware bringup launch files | No real hardware only |
 
