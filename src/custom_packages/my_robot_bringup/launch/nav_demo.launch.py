@@ -2,18 +2,18 @@
 nav_demo.launch.py
 
 Launches TurtleBot3 in the warehouse world, brings up turtlebot3_navigation2
-against a previously-saved map, and optionally starts the waypoint_follower
-node.
+(AMCL + planners + controllers) against a previously-saved map, and starts
+your custom waypoint_follower node to autonomously visit a sequence of goals.
+
+Uses turtlebot3_navigation2 rather than a bare nav2_bringup include, matching
+the packages actually shipped in the robotis/turtlebot3:humble-latest image.
+
+Prerequisite: build a map first with slam_demo.launch.py and save it (see
+that file's docstring), then point map:= at the saved .yaml file.
 
 Usage:
-    # full mission:
     ros2 launch my_robot_bringup nav_demo.launch.py \
         map:=/root/turtlebot3_ws/src/custom_packages/my_robot_bringup/maps/warehouse_map.yaml
-
-    # nav2 only, no autonomous mission:
-    ros2 launch my_robot_bringup nav_demo.launch.py \
-        map:=/root/turtlebot3_ws/src/custom_packages/my_robot_bringup/maps/warehouse_map.yaml \
-        run_waypoint_follower:=false
 """
 
 import os
@@ -21,7 +21,6 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
-from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
@@ -37,12 +36,6 @@ def generate_launch_description():
         description='Full path to the map YAML file saved from slam_demo.launch.py',
     )
 
-    run_waypoint_follower_arg = DeclareLaunchArgument(
-        'run_waypoint_follower',
-        default_value='true',
-        description='Whether to start the autonomous waypoint_follower node',
-    )
-
     world_file = os.path.join(bringup_dir, 'worlds', 'warehouse_world.sdf')
 
     world_launch = IncludeLaunchDescription(
@@ -52,10 +45,11 @@ def generate_launch_description():
         launch_arguments={'world': world_file}.items(),
     )
 
-    # Computed explicitly (mirroring turtlebot3_navigation2's own logic)
+    # Computed explicitly here (mirroring turtlebot3_navigation2's own logic)
     # rather than relying on navigation2.launch.py's internal self-referential
     # LaunchConfiguration('params_file', default=...) trick, which breaks
-    # when navigation2.launch.py is nested inside another launch file.
+    # when navigation2.launch.py is nested inside another launch file's
+    # IncludeLaunchDescription instead of being the top-level launched file.
     turtlebot3_model = os.environ['TURTLEBOT3_MODEL']
     ros_distro = os.environ.get('ROS_DISTRO')
     param_file_name = turtlebot3_model + '.yaml'
@@ -75,19 +69,9 @@ def generate_launch_description():
         }.items(),
     )
 
-    waypoint_follower_node = Node(
-        package='my_robot_control',
-        executable='waypoint_follower',
-        name='waypoint_follower',
-        output='screen',
-        parameters=[os.path.join(bringup_dir, 'config', 'waypoints.yaml')],
-        condition=IfCondition(LaunchConfiguration('run_waypoint_follower')),
-    )
 
     return LaunchDescription([
         map_arg,
-        run_waypoint_follower_arg,
         world_launch,
         nav2_launch,
-        waypoint_follower_node,
     ])
