@@ -1,4 +1,4 @@
-# 02 — TurtleBot3 Nodes
+# 02 - TurtleBot3 Nodes
 
 What ships in the base image out of the box, before any custom code is
 introduced from `docker/Dockerfile`, this container installs `turtlebot3`,
