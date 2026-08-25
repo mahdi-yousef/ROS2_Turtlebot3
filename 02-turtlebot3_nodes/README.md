@@ -69,8 +69,7 @@ Autonomous navigation (Nav2) against a previously-saved map:
 ```bash
 ros2 launch turtlebot3_navigation2 navigation2.launch.py map:=<path-to-map.yaml>
 ```
-Also covered fully in `03-slam and navigation`, including a real issue hit
-integrating this into a custom launch file and its fix.
+Also covered fully in `03-slam and navigation`.
 
 ### `turtlebot3_example`
 
