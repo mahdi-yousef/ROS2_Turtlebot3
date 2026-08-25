@@ -41,13 +41,14 @@ Manual keyboard control. One node:
 ros2 pkg executables turtlebot3_teleop
 # -> turtlebot3_teleop teleop_keyboard
 ```
-Run the simulation as described in section 01-8 then open a new terminal in the container:
+Run the simulation as described in section 01-8 then open new WSL terminal and open a new terminal in the container using `docker exec -it turtlebot3 bash`:
 ```bash
 ros2 run turtlebot3_teleop teleop_keyboard
 ```
 Now try moving the robot using the keyboard (make sure to click on the teleop terminal before)
+
 It publishes `geometry_msgs/msg/Twist` to `/cmd_vel` based on keypresses.
-Confirm it's working by watching the topic directly:
+Confirm it's working by watching the topic directly in a new terminal:
 ```bash
 ros2 topic echo /cmd_vel
 ```
