@@ -177,9 +177,10 @@ source install/setup.bash
 ## 8. Verify
 
 ```bash
-ros2 launch my_robot_bringup custom_world_demo.launch.py \
-  world:=/root/turtlebot3_ws/src/custom_packages/my_robot_bringup/worlds/warehouse_world.sdf
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ```
+This must open the standard world file that comes with the turtlebot3 packages as shown below:
+![](screenshots/world_launch.png)
 > Robot not visible in Gazebo — confirm `echo $TURTLEBOT3_MODEL`, then
 > check Gazebo's Models panel and right-click the robot entry → Follow.
 > If that doesn't resolve it, in WSL `docker restart turtlebot3` and relaunch.
