@@ -26,6 +26,7 @@ world file, no separate `models/` folder needed). You can launch it in gazebo an
 ros2 launch my_robot_bringup custom_world_demo.launch.py \
   world:=/root/turtlebot3_ws/src/custom_packages/my_robot_bringup/worlds/warehouse_world.sdf
 ```
+![custom_world_demo launching turtlebot3 in user referenced world.sdf file](screenshots/custom_world.png)
 ---
 
 ## Running SLAM
