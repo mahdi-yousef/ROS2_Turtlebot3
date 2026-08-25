@@ -17,6 +17,17 @@ I built them this way, one launch file including smaller ones, so the world spaw
 
 ---
 
+## Running custom world
+
+`warehouse_world.sdf` (in `src/custom_packages/my_robot_bringup/worlds/`)
+was downloaded from: **[https://app.gazebosim.org/hboc/worlds/simple_colored_warehouse]**. It contains no external model references (self-contained
+world file, no separate `models/` folder needed). You can launch it in gazebo and spawn turtlebot3 burger agent in it using `custom_world_demo.launch.py`as follows:
+```bash
+ros2 launch my_robot_bringup custom_world_demo.launch.py \
+  world:=/root/turtlebot3_ws/src/custom_packages/my_robot_bringup/worlds/warehouse_world.sdf
+```
+---
+
 ## Running SLAM
 
 You need two terminals into the same container.
