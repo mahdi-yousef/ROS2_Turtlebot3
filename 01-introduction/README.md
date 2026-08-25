@@ -189,16 +189,6 @@ Gazebo should open (via WSLg, no extra X server setup needed) showing the
 warehouse with TurtleBot3 spawned inside it. See folders `02` through `04`
 for the rest of the project once this is confirmed working.
 
----
-
-## World & Model Sources
-
-`warehouse_world.sdf` (in `src/custom_packages/my_robot_bringup/worlds/`)
-was downloaded from: **[https://app.gazebosim.org/hboc/worlds/simple_colored_warehouse]**. It contains no external model references (self-contained
-world file, no separate `models/` folder needed).
-
----
-
 ## Repository Layout Reference
 
 ```
