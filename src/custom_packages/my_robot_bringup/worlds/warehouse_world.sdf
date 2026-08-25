@@ -86,6 +86,11 @@
         </collision>
         <visual name="visual">
           <geometry><box><size>30 0.2 2</size></box></geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0 0 0 1</diffuse>
+            <specular>0 0 0 1</specular>
+          </material>
         </visual>
       </link>
     </model>
@@ -99,6 +104,11 @@
         </collision>
         <visual name="visual">
           <geometry><box><size>30 0.2 2</size></box></geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0 0 0 1</diffuse>
+            <specular>0 0 0 1</specular>
+          </material>
         </visual>
       </link>
     </model>
@@ -112,6 +122,11 @@
         </collision>
         <visual name="visual">
           <geometry><box><size>0.2 24 2</size></box></geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0 0 0 1</diffuse>
+            <specular>0 0 0 1</specular>
+          </material>
         </visual>
       </link>
     </model>
@@ -125,6 +140,11 @@
         </collision>
         <visual name="visual">
           <geometry><box><size>0.2 24 2</size></box></geometry>
+          <material>
+            <ambient>0 0 0 1</ambient>
+            <diffuse>0 0 0 1</diffuse>
+            <specular>0 0 0 1</specular>
+          </material>
         </visual>
       </link>
     </model>
