@@ -36,10 +36,6 @@ You need two terminals into the same container.
 **Terminal 1:**
 ```bash
 docker exec -it turtlebot3 bash
-source /opt/ros/humble/setup.bash
-source ~/turtlebot3_ws/install/setup.bash
-export TURTLEBOT3_MODEL=burger
-
 ros2 launch my_robot_bringup slam_demo.launch.py
 ```
 Gazebo and RViz should open, with the map building live in RViz as you drive.
