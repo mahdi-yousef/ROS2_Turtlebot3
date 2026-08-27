@@ -10,7 +10,7 @@ can be supplied through the 'world' launch argument.
 ros2 launch my_robot_bringup slam_demo.launch.py
   #default arguments
     #world:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/worlds/warehouse_world.sdf
-    #x_pose:=0.0   
+    #x_pose:=0.0
     #y_pose:=0.0
 
 # Specify everything example:
@@ -37,23 +37,32 @@ def generate_launch_description():
     bringup_dir = get_package_share_directory('my_robot_bringup')
     cartographer_dir = get_package_share_directory('turtlebot3_cartographer')
 
-    # Default world
     default_world = os.path.join(
         bringup_dir,
         'worlds',
         'warehouse_world.sdf'
     )
 
-    # Allow the world to be overridden from the command line
     world_arg = DeclareLaunchArgument(
         'world',
         default_value=default_world,
         description='Full path to the world file to load'
     )
+    x_pose_arg = DeclareLaunchArgument(
+        'x_pose',
+        default_value='0.0',
+        description='Initial X position of the robot'
+    )
+    y_pose_arg = DeclareLaunchArgument(
+        'y_pose',
+        default_value='0.0',
+        description='Initial Y position of the robot'
+    )
 
     world = LaunchConfiguration('world')
+    x_pose = LaunchConfiguration('x_pose')
+    y_pose = LaunchConfiguration('y_pose')
 
-    # Launch Gazebo with the selected world
     world_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(
@@ -62,11 +71,13 @@ def generate_launch_description():
                 'custom_world_demo.launch.py'
             )
         ),
-        launch_arguments={'world': world}.items()
+        launch_arguments={
+            'world': world,
+            'x_pose': x_pose,
+            'y_pose': y_pose,
+        }.items()
     )
-    x_pose = LaunchConfiguration('x_pose', default='0.0')
-    y_pose = LaunchConfiguration('y_pose', default='0.0')
-    # Launch Cartographer
+
     cartographer_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(
@@ -80,6 +91,8 @@ def generate_launch_description():
 
     return LaunchDescription([
         world_arg,
+        x_pose_arg,
+        y_pose_arg,
         world_launch,
         cartographer_launch,
     ])
