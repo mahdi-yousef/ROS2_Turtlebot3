@@ -17,7 +17,7 @@ I built them this way, one launch file including smaller ones, so the world spaw
 
 ---
 
-## Running custom world
+## custom_world_demo.launch.py
 First run the container and open the terminal as described in [section 02](../folder1/README.md#used-in-simulation).
 
 `warehouse_world.sdf` (in `src/custom_packages/my_robot_bringup/worlds/`)
@@ -34,14 +34,14 @@ The default arguments are:
 - `y_pose:=0.0`
 ![custom_world_demo launching turtlebot3 in user referenced world.sdf file](screenshots/custom_world.png)
 ---
-or you can launch in any world (.world/.sdf), example:
+or you can launch in any world (.world/.sdf) using the following arguments:
 ```bash
 ros2 launch my_robot_bringup custom_world_demo.launch.py \
     world:=/root/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_gazebo/worlds/turtlebot3_world.world \
     x_pose:=-2.0 \
     y_pose:=-0.5
 ```
-## Running SLAM
+## slam_demo.launch.py
 
 You need two terminals into the same container.
 
@@ -72,7 +72,7 @@ ros2 run nav2_map_server map_saver_cli -f ~/turtlebot3_ws/src/custom_packages/my
 
 ---
 
-## Running Navigation
+## nav_demo.launch.py
 
 **Terminal 1:**
 ```bash
