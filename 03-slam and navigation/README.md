@@ -76,7 +76,7 @@ ros2 launch my_robot_bringup slam_demo.launch.py \
   x_pose:=-2.0 \
   y_pose:=-0.5
 ```
-In this repo, I included SLAM maps for warehouse_world and turtlebot3_world, which you can use later in navigation directly, at the following directory `/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/maps` of respective names:
+In this repo, I included SLAM maps for warehouse_world and turtlebot3_world, which you can use later in navigation directly, at the following directory `/root/turtlebot3_ws/src/custom_packages/my_robot_bringup/maps` of respective names:
 
 - `warehouse_map.yaml`
 - `tb3world_map.yaml`
@@ -87,14 +87,14 @@ In this repo, I included SLAM maps for warehouse_world and turtlebot3_world, whi
 
 **Terminal 1:**
 ```bash
-docker exec -it turtlebot3 bash
-source /opt/ros/humble/setup.bash
-source ~/turtlebot3_ws/install/setup.bash
-export TURTLEBOT3_MODEL=burger
-
 ros2 launch my_robot_bringup nav_demo.launch.py \
-  map:=/root/turtlebot3_ws/src/custom_packages/my_robot_bringup/maps/warehouse_map.yaml
 ```
+The default arguments are:
+
+- `world:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/worlds/warehouse_world.sdf`
+- `map:/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/maps/warehouse_map.yaml`
+- `x_pose:=0.0`
+- `y_pose:=0.0`
 
 **Terminal 2**, if RViz didn't open on its own or you want a separate window:
 ```bash
