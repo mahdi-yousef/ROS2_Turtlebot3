@@ -20,7 +20,6 @@ ros2 launch my_robot_bringup custom_world_demo.launch.py \
     x_pose:=-2.0 \
     y_pose:=-0.5
 
-
 """
 
 import os
