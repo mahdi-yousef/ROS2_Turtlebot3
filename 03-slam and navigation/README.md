@@ -100,5 +100,15 @@ In RViz, click "2D Pose Estimate" and click-drag on the robot's real position an
 
 ![Navigation session: Gazebo, RViz, and terminal running Nav2](screenshots/nav_session.png)
 
----
+also you can launch in any world with its map using the following arguments for example:
+```bash
+    ros2 launch my_robot_bringup nav_demo.launch.py \
+        world:=/root/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_gazebo/worlds/turtlebot3_world.world \
+        map:=/root/turtlebot3_ws/src/custom_packages/my_robot_bringup/maps/tb3world_map.yaml \
+        x_pose:=-2.0 \
+        y_pose:=-0.5
+```
+![Navigation session: Gazebo, RViz, and terminal running Nav2](screenshots/nav_session2.png)
 
+
+---
