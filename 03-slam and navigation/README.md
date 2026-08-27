@@ -18,7 +18,7 @@ I built them this way, one launch file including smaller ones, so the world spaw
 ---
 
 ## custom_world_demo.launch.py
-First run the container and open the terminal as described in [section 02](../02-turtlebot3_nodes/README.md#used-in-simulation).
+First run the container and open a new terminal in it as described in [section 02](../02-turtlebot3_nodes/README.md#used-in-simulation).
 
 `warehouse_world.sdf` (in `src/custom_packages/my_robot_bringup/worlds/`)
 was downloaded from: **[https://app.gazebosim.org/hboc/worlds/simple_colored_warehouse]**. It contains no external model references (self-contained
@@ -85,9 +85,9 @@ In this repo, I included SLAM maps for warehouse_world and turtlebot3_world, whi
 
 ## nav_demo.launch.py
 
-**Terminal 1:**
+Open a new terminal inside the container as described before then:
 ```bash
-ros2 launch my_robot_bringup nav_demo.launch.py \
+ros2 launch my_robot_bringup nav_demo.launch.py
 ```
 The default arguments are:
 
@@ -96,20 +96,9 @@ The default arguments are:
 - `x_pose:=0.0`
 - `y_pose:=0.0`
 
-**Terminal 2**, if RViz didn't open on its own or you want a separate window:
-```bash
-docker exec -it turtlebot3 bash
-source /opt/ros/humble/setup.bash
-source ~/turtlebot3_ws/install/setup.bash
-
-ros2 run rviz2 rviz2
-```
-In RViz, click "2D Pose Estimate" and click-drag on the robot's real position and heading. The waypoint follower waits for this before it starts sending goals.
+In RViz, click "2D Pose Estimate" and click-drag on the robot's real position and heading on hte map. Then click on "Nav2 Goal" and click-drag on the map to send goal position and heading for the burger bot.
 
 ![Navigation session: Gazebo, RViz, and terminal running Nav2](screenshots/nav_session.png)
 
 ---
 
-## More on this project's own nodes
-
-`waypoint_follower` and `obstacle_avoider` are covered in `04-custom_nodes`.
