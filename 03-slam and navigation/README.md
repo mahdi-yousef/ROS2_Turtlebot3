@@ -18,7 +18,7 @@ I built them this way, one launch file including smaller ones, so the world spaw
 ---
 
 ## custom_world_demo.launch.py
-First run the container and open the terminal as described in [section 02](../folder1/README.md#used-in-simulation).
+First run the container and open the terminal as described in [section 02](../02-turtlebot3_nodes/README.md#used-in-simulation).
 
 `warehouse_world.sdf` (in `src/custom_packages/my_robot_bringup/worlds/`)
 was downloaded from: **[https://app.gazebosim.org/hboc/worlds/simple_colored_warehouse]**. It contains no external model references (self-contained
