@@ -92,7 +92,7 @@ ros2 launch my_robot_bringup nav_demo.launch.py
 The default arguments are:
 
 - `world:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/worlds/warehouse_world.sdf`
-- `map:/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/maps/warehouse_map.yaml`
+- `map:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/maps/warehouse_map.yaml`
 - `x_pose:=0.0`
 - `y_pose:=0.0`
 
