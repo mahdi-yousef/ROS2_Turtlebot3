@@ -18,7 +18,7 @@ I built them this way, one launch file including smaller ones, so the world spaw
 ---
 
 ## Running custom world
-
+First [run the container and open the terminal](02-turtlebot3_nodes/README.md)
 `warehouse_world.sdf` (in `src/custom_packages/my_robot_bringup/worlds/`)
 was downloaded from: **[https://app.gazebosim.org/hboc/worlds/simple_colored_warehouse]**. It contains no external model references (self-contained
 world file, no separate `models/` folder needed). You can launch it in gazebo and spawn turtlebot3 burger agent in it using `custom_world_demo.launch.py`as follows:
