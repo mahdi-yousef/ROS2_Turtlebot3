@@ -53,10 +53,6 @@ Gazebo and RViz should open, with the map building live in RViz as you drive.
 
 **Terminal 2** (open a new WSL terminal, same command to enter the same running container):
 ```bash
-docker exec -it turtlebot3 bash
-source /opt/ros/humble/setup.bash
-source ~/turtlebot3_ws/install/setup.bash
-
 ros2 run turtlebot3_teleop teleop_keyboard
 ```
 Drive slowly, especially through turns, and try to loop back to your start point so Cartographer gets a clean loop closure.
