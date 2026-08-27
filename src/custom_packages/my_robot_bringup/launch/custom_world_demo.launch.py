@@ -1,12 +1,26 @@
 """
 custom_world_demo.launch.py
 
-Spawns TurtleBot3 inside any Gazebo Classic world, via a launch argument
-rather than a hardcoded world path.
+Same structure as ROBOTIS's turtlebot3_world.launch.py (gzserver + gzclient +
+robot_state_publisher + spawn_turtlebot3), but the world file is a launch
+argument instead of hardcoded -- point it at any .world file you've placed
+in this package's worlds/ folder (or anywhere else on disk).
 
 Usage:
-    ros2 launch my_robot_bringup custom_world_demo.launch.py \
-        world:=/root/turtlebot3_ws/src/custom_packages/my_robot_bringup/worlds/warehouse_world.sdf
+
+ros2 launch my_robot_bringup custom_world_demo.launch.py
+  #default arguments
+    #world:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/worlds/warehouse_world.sdf
+    #x_pose:=0.0   
+    #y_pose:=0.0
+
+# Specify everything example:
+ros2 launch my_robot_bringup custom_world_demo.launch.py \
+    world:=/root/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_gazebo/worlds/turtlebot3_world.world \
+    x_pose:=-2.0 \
+    y_pose:=-0.5
+
+
 """
 
 import os
@@ -27,11 +41,14 @@ def generate_launch_description():
     x_pose = LaunchConfiguration('x_pose', default='0.0')
     y_pose = LaunchConfiguration('y_pose', default='0.0')
 
-    default_world = os.path.join(bringup_dir, 'worlds', 'my_world.world')
+    # Default: a world file living inside this package's own worlds/ folder.
+    # Drop any downloaded .world file there (and its models/ folder alongside
+    # it, or on GAZEBO_MODEL_PATH) and this will pick it up with no edits.
+    default_world = os.path.join(bringup_dir, 'worlds', 'warehouse_world.sdf')
     world_arg = DeclareLaunchArgument(
         'world',
         default_value=default_world,
-        description='Full path to the .world/.sdf file to load',
+        description='Full path to the .world file to load',
     )
     world = LaunchConfiguration('world')
 
@@ -48,6 +65,8 @@ def generate_launch_description():
         )
     )
 
+    # World-agnostic -- reused unmodified from turtlebot3_gazebo, exactly as
+    # in the official launch file you attached.
     robot_state_publisher_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(tb3_gazebo_dir, 'launch', 'robot_state_publisher.launch.py')
