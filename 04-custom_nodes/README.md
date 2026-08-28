@@ -27,6 +27,7 @@ The default arguments are:
 - `params_file:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/config/obstacle_avoider_params.yaml`
 
 Gazebo opens with the robot driving itself around the warehouse, stopping and turning away from shelves and walls.
+
 ![obstacle_avoider driving around the warehouse](screenshots/obstacle_avoider.png)
 
 **Override the tuning**, either edit `config/obstacle_avoider_params.yaml` directly, or point at a different YAML entirely:
