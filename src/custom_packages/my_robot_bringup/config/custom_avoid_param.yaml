@@ -1,0 +1,6 @@
+obstacle_avoider:
+  ros__parameters:
+    stop_distance: 0.4     # meters - start turning when something is closer than this
+    forward_speed: 0.5     # m/s
+    turn_speed: 0.3         # rad/s
+    forward_cone_deg: 40.0   # +/- degrees around straight-ahead counted as "front"
