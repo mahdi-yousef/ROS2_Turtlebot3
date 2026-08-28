@@ -45,6 +45,7 @@ ros2 launch my_robot_bringup avoid_demo.launch.py \
   params_file:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/config/custom_avoid_param.yaml \
   x_pose:=-2.0 \
   y_pose:=-0.5
+```
 ---
 
 ## waypoint_follower
