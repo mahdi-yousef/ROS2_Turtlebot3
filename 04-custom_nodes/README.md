@@ -21,7 +21,7 @@ ros2 launch my_robot_bringup avoid_demo.launch.py
 ```
 Gazebo opens with the robot driving itself around the warehouse, stopping and turning away from shelves and walls.
 
-**Override the tuning**, either edit `config/obstacle_avoider_params.yaml` directly, point at a different YAML entirely:
+**Override the tuning**, either edit `config/obstacle_avoider_params.yaml` directly, or point at a different YAML entirely:
 ```bash
 ros2 launch my_robot_bringup avoid_demo.launch.py \
   params_file:=/path/to/your_own_params.yaml
