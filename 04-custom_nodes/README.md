@@ -27,6 +27,7 @@ The default arguments are:
 - `params_file:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/config/obstacle_avoider_params.yaml`
 
 Gazebo opens with the robot driving itself around the warehouse, stopping and turning away from shelves and walls.
+![obstacle_avoider driving around the warehouse](screenshots/obstacle_avoider.png)
 
 **Override the tuning**, either edit `config/obstacle_avoider_params.yaml` directly, or point at a different YAML entirely:
 ```bash
@@ -37,9 +38,13 @@ or override a single value on the command line:
 ```bash
 ros2 launch my_robot_bringup avoid_demo.launch.py --ros-args -p stop_distance:=0.6
 ```
-
-![obstacle_avoider driving around the warehouse](screenshots/obstacle_avoider.png)
-
+Finally, you can specify your arguments to any world and parameter file as follows:
+```bash
+ros2 launch my_robot_bringup avoid_demo.launch.py \
+  world:=/root/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_gazebo/worlds/turtlebot3_world.world \
+  params_file:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/config/custom_avoid_param.yaml \
+  x_pose:=-2.0 \
+  y_pose:=-0.5
 ---
 
 ## waypoint_follower
