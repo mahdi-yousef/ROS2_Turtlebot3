@@ -6,7 +6,7 @@ The two nodes I wrote for this project, both in `src/custom_packages/my_robot_co
 
 Reactive, LiDAR-based obstacle avoidance. Looks at a forward cone of the `/scan` topic, drives forward if nothing's within `stop_distance`, otherwise stops and turns toward whichever side has more open space.
 
-Configured via a parameter YAML rather than hardcoded values. Defaults:
+Configured via a parameter YAML rather than hardcoded values. Default parameter file `obstacle_avoider_params.yaml` values:
 
 | Parameter | Default | Meaning |
 |---|---|---|
@@ -19,6 +19,13 @@ Configured via a parameter YAML rather than hardcoded values. Defaults:
 ```bash
 ros2 launch my_robot_bringup avoid_demo.launch.py
 ```
+The default arguments are:
+
+- `world:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/worlds/warehouse_world.sdf`
+- `x_pose:=0.0`
+- `y_pose:=0.0`
+- `params_file:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/config/obstacle_avoider_params.yaml`
+
 Gazebo opens with the robot driving itself around the warehouse, stopping and turning away from shelves and walls.
 
 **Override the tuning**, either edit `config/obstacle_avoider_params.yaml` directly, or point at a different YAML entirely:
