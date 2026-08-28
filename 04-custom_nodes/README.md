@@ -46,6 +46,8 @@ ros2 launch my_robot_bringup avoid_demo.launch.py \
   x_pose:=-2.0 \
   y_pose:=-0.5
 ```
+![obstacle_avoider driving around the warehouse](screenshots/obstacle_avoider2.png)
+
 ---
 
 ## waypoint_follower
