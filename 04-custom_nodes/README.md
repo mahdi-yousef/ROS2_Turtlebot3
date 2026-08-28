@@ -6,7 +6,7 @@ The two nodes I wrote for this project, both in `src/custom_packages/my_robot_co
 
 Reactive, LiDAR-based obstacle avoidance. Looks at a forward cone of the `/scan` topic, drives forward if nothing's within `stop_distance`, otherwise stops and turns toward whichever side has more open space.
 
-Configured via a parameter YAML rather than hardcoded values, see the explanation above for how that mechanism works. Defaults:
+Configured via a parameter YAML rather than hardcoded values. Defaults:
 
 | Parameter | Default | Meaning |
 |---|---|---|
@@ -15,7 +15,7 @@ Configured via a parameter YAML rather than hardcoded values, see the explanatio
 | `turn_speed` | 0.6 rad/s | Turning speed when avoiding |
 | `forward_cone_deg` | 40.0° | +/- degrees around straight-ahead counted as "front" |
 
-**Run it:**
+**The node should be initiated while gazebo is launched and the turtlebot is spawned inside a world, then a launch file `avoid_demo.launch.py` is created for this purpose. Run it:**
 ```bash
 ros2 launch my_robot_bringup avoid_demo.launch.py
 ```
