@@ -55,7 +55,27 @@ ros2 launch my_robot_bringup avoid_demo.launch.py \
 
 Sends a sequence of `(x, y, yaw)` goals to Nav2's `NavigateToPose` action, one at a time, waiting for each to finish before sending the next. Waits for AMCL to publish a localized pose before sending anything, so it's safe to start even before you've given a 2D Pose Estimate, it just sits and waits.
 
-Waypoints come from `config/waypoints.yaml`, same YAML-parameter pattern as `obstacle_avoider`, edit real `(x, y, yaw)` values there by reading coordinates off your saved map in RViz.
+Waypoints come from `config/waypoints.yaml`, same YAML-parameter pattern as `obstacle_avoider`.
+
+**Getting real `(x, y)` values off the map**, instead of eyeballing coordinates, use RViz's **Publish Point** tool:
+
+1. With `nav_demo.launch.py` running and the map loaded in RViz, click the **Publish Point** button in the RViz toolbar.
+2. Click anywhere on the map at the location you want as a waypoint. Each click publishes a `geometry_msgs/PointStamped` to the `/clicked_point` topic.
+3. In a spare terminal, echo that topic to read off the coordinates as you click:
+   ```bash
+   ros2 topic echo /clicked_point
+   ```
+4. Copy the `x` and `y` values from the echoed output into `config/waypoints.yaml` for that waypoint. Repeat per point, picking your own `yaw` for each (the tool only gives you position, not heading).
+
+### Yaw tolerance
+
+Since `/clicked_point` doesn't carry a heading, hitting the exact yaw for every waypoint isn't realistic. Rather than fighting that, `yaw_goal_tolerance` in `nav2_params_override.yaml` is set to `2π` (`6.28`). With the tolerance that wide, Nav2's goal check accepts any final heading, so the yaw value in a waypoint stops mattering, the robot just needs to reach the `(x, y)` and it counts as arrived. One config value instead of changing how `waypoint_follower.py` builds or checks goals.
+
+**Note:** this override currently lives in the *install* copy:
+```
+/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/config/nav2_params_override.yaml
+```
+not in `src/`. That's intentional, not an oversight: `nav2_params_override.yaml` in `src/` is the generic Nav2 config used by other navigation setups in this workspace, where a real `yaw_goal_tolerance` still matters, so it can't be loosened there. The tradeoff is that **any `colcon build` will overwrite the install copy from `src/` and silently undo this**, `yaw_goal_tolerance` will go back to its normal value and yaw will matter again for waypoint missions. After any rebuild, re-apply the `2π` edit to the install file before running `waypoint_follower`.
 
 **`nav_demo.launch.py` no longer starts this automatically** (removed to keep Nav2 usable on its own while tuning localization, without a mission firing off goals in the background). Run it yourself in a second terminal instead:
 
