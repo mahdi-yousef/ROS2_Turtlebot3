@@ -131,8 +131,6 @@ docker exec -it turtlebot3 bash
 ## 5. Confirm the environment
 
 ```bash
-export TURTLEBOT3_MODEL=burger
-echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc
 source ~/.bashrc
 echo $ROS_DISTRO
 echo $TURTLEBOT3_MODEL
