@@ -26,7 +26,7 @@ The default arguments are:
 - `y_pose:=0.0`
 - `params_file:=/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/config/obstacle_avoider_params.yaml`
 
-Gazebo opens with the robot driving itself around the warehouse, stopping and turning away from shelves and walls.
+Gazebo opens with the robot driving itself around the warehouse, stopping and turning away from blocks and walls.
 
 ![obstacle_avoider driving around the warehouse](screenshots/obstacle_avoider.png)
 
@@ -55,21 +55,21 @@ ros2 launch my_robot_bringup avoid_demo.launch.py \
 
 Sends a sequence of `(x, y, yaw)` goals to Nav2's `NavigateToPose` action, one at a time, waiting for each to finish before sending the next. Waits for AMCL to publish a localized pose before sending anything, so it's safe to start even before you've given a 2D Pose Estimate, it just sits and waits.
 
-Waypoints come from `config/waypoints.yaml`, same YAML-parameter pattern as `obstacle_avoider`.
+Waypoints come from `/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/config/waypoints.yaml`, same YAML-parameter pattern as `obstacle_avoider`, which I included and already filled with coordinates and ready to try.
 
-**Getting real `(x, y)` values off the map**, instead of eyeballing coordinates, use RViz's **Publish Point** tool:
-
-1. With `nav_demo.launch.py` running and the map loaded in RViz, click the **Publish Point** button in the RViz toolbar.
-2. Click anywhere on the map at the location you want as a waypoint. Each click publishes a `geometry_msgs/PointStamped` to the `/clicked_point` topic.
-3. In a spare terminal, echo that topic to read off the coordinates as you click:
+**Incase you want to custom make your waypoints, getting real `(x, y)` values off the map**, instead of eyeballing coordinates, use RViz's **Publish Point** tool:
+1. With `nav_demo.launch.py` running and the map loaded in RViz, the **Publish Point** button in the RViz toolbar will publish a `geometry_msgs/PointStamped` to the `/clicked_point` topic.
+2. In a new terminal, echo that topic to read off the coordinates as you click:
    ```bash
    ros2 topic echo /clicked_point
    ```
-4. Copy the `x` and `y` values from the echoed output into `config/waypoints.yaml` for that waypoint. Repeat per point, picking your own `yaw` for each (the tool only gives you position, not heading).
+3. Click anywhere on the map at the locations you want as a waypoints to construct your trajectory.
+
+4. Copy the `x`, `y` values from the echoed output into `config/waypoints.yaml` and for yaw values, fill with random values (`z` values for example, see following section for explanation). Alternatively, create new yaml file of the same format and pass it as an argument instead of `waypoints.yaml` as described later.
 
 ### Yaw tolerance
+For yaw values, fill with random values as we will disregard it to ensure smooth transition between waypoints and prevent halting at each reached (x,y) coordinate to adjust heading. This can be achieved by increasing the Yaw tolerence The `NavigateToPose` action executes yaw commands when it reaches the commanded (x,y) which will result in a non-smooth transition between waypoints Since `/clicked_point` doesn't carry a heading (yaw), the `z` values can serve as yaw values because the yaw values are not important
 
-Since `/clicked_point` doesn't carry a heading, hitting the exact yaw for every waypoint isn't realistic. Rather than fighting that, `yaw_goal_tolerance` in `nav2_params_override.yaml` is set to `2π` (`6.28`). With the tolerance that wide, Nav2's goal check accepts any final heading, so the yaw value in a waypoint stops mattering, the robot just needs to reach the `(x, y)` and it counts as arrived. One config value instead of changing how `waypoint_follower.py` builds or checks goals.
 
 **Note:** this override currently lives in the *install* copy:
 ```
