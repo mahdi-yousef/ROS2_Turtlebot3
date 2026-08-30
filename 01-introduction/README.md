@@ -177,14 +177,15 @@ source install/setup.bash
 ```bash
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 ```
-This must open the standard world file that comes with the turtlebot3_gazebo package `~/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_gazebo/worlds/turtlebot3_world.world`as shown below:
+This must open the standard world file that comes with the turtlebot3_gazebo package `~/turtlebot3_ws/src/turtlebot3_simulations/turtlebot3_gazebo/worlds/turtlebot3_world.world`as shown below. First time Gazebo will take couple minutes to launch so wait. If gazebo launches without spawning a burger bot then press ctrl+C in the terminal then relaunch `turtlebot3_world.launch.py` again.
+
 ![](screenshots/world_launch.png)
 > Robot not visible in Gazebo — confirm `echo $TURTLEBOT3_MODEL`, then
 > check Gazebo's Models panel and right-click the robot entry → Follow.
 > If that doesn't resolve it, in WSL `docker restart turtlebot3` and relaunch.
 
-Gazebo should open (via WSLg, no extra X server setup needed) showing the
-warehouse with TurtleBot3 spawned inside it. See folders `02` through `04`
+Gazebo should open showing the
+world with TurtleBot3 spawned inside it. See folders `02` through `04`
 for the rest of the project once this is confirmed working.
 
 ## 9. Opening a new terminal inside the container
@@ -203,7 +204,7 @@ tb3() {
     docker exec -it turtlebot3 bash
 }
 ```
-then press ctrl+x then press y then ENTER. Now in WSL:
+then press ctrl+X then press Y then ENTER. Now in WSL:
 ```bash
 source ~/.bashrc
 ```
