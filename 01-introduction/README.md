@@ -84,7 +84,7 @@ You can see in `docker/` the following yaml file:
 services:
   turtlebot3:
     container_name: turtlebot3
-    image: robotis/turtlebot3:humble-latest
+    image: robotis/turtlebot3:humble
     tty: true
     restart: unless-stopped
     cap_add:
