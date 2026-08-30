@@ -109,6 +109,3 @@ Watch the terminal, it logs one line per waypoint sent and one per result:
 
 ---
 
-## Both together
-
-Nothing stops you running `obstacle_avoider` for casual driving and `waypoint_follower` for scripted missions in the same session, just not at the same time, both publish to `/cmd_vel` and would fight each other.
