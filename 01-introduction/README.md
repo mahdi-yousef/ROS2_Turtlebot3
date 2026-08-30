@@ -198,7 +198,7 @@ nano ~/.bashrc
 then navigate to the bottom of the file and paste the following:
 ```bash
 tb3() {
-    cd ~/turtlebot3-humble/docker/humble || return
+    cd ~/ROS2_Turtlebot3/docker || return
 
     docker compose up -d
 
