@@ -1,9 +1,9 @@
 
-# ROS2 TurtleBot3 — Warehouse Simulation Project
+# ROS2 TurtleBot3 Simulation Project
 
-A simulated TurtleBot3 Burger operating in a custom warehouse environment —
+A simulated TurtleBot3 Burger operating in a custom environment executing
 reactive obstacle avoidance, SLAM mapping, and autonomous Nav2 waypoint
-navigation — built on ROS2 Humble and Gazebo Classic, in Docker on WSL2.
+navigation. Built on ROS2 Humble and Gazebo Classic in Docker on WSL2.
 
 ## Contents
 
