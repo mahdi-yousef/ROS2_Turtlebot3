@@ -57,7 +57,7 @@ Sends a sequence of `(x, y, yaw)` goals to Nav2's `NavigateToPose` action, one a
 
 Waypoints come from `/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/config/waypoints.yaml`, same YAML-parameter pattern as `obstacle_avoider`, which I included and already filled with coordinates and ready to try.
 
-**Incase you want to custom make your waypoints, getting real `(x, y)` values off the map**, instead of eyeballing coordinates, use RViz's **Publish Point** tool:
+**Incase you don't want to custom make your waypoints, skip this part and proceed to section Yaw tolerance. Get real `(x, y)` values off the map**, instead of eyeballing coordinates, use RViz's **Publish Point** tool:
 1. With `nav_demo.launch.py` running and the map loaded in RViz, the **Publish Point** button in the RViz toolbar will publish a `geometry_msgs/PointStamped` to the `/clicked_point` topic.
 2. In a new terminal, echo that topic to read off the coordinates as you click:
    ```bash
@@ -84,6 +84,8 @@ scroll to this part:
       yaw_goal_tolerance: 0.25
 ```
 edit `yaw_goal_tolerence` to 6.283 then press ctrl+x then press y then ENTER.
+
+**Note**: remember to edit this value back to 0.25 after you finish this application since its used by all other navigation applications through `turtlebot3_navigation2` node.
 
 **Terminal 1:**
 ```bash
