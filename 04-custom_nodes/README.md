@@ -68,22 +68,28 @@ Waypoints come from `/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot
 4. Copy the `x`, `y` values from the echoed output into `config/waypoints.yaml` and for yaw values, fill with random values (`z` values for example, see following section for explanation). Alternatively, create new yaml file of the same format and pass it as an argument instead of `waypoints.yaml` as described later.
 
 ### Yaw tolerance
-For yaw values, fill with random values as we will disregard it to ensure smooth transition between waypoints and prevent halting at each reached (x,y) coordinate to adjust heading. This can be achieved by increasing the Yaw tolerence The `NavigateToPose` action executes yaw commands when it reaches the commanded (x,y) which will result in a non-smooth transition between waypoints Since `/clicked_point` doesn't carry a heading (yaw), the `z` values can serve as yaw values because the yaw values are not important
+For yaw values, we filled with random values as we will disregard it to ensure smooth transition between waypoints and prevent halting at each reached (x,y) coordinate to adjust heading by `NavigateToPose` action. This can be achieved by increasing `yaw_goal_tolerence` to `6.283`~(`2π`) to accept whatever value of heading the robot reaches the waypoint with.
 
 
-**Note:** this override currently lives in the *install* copy:
+To edit `yaw_goal_tolerence`:
+```bash
+nano /root/turtlebot3_ws/install/turtlebot3_navigation2/share/turtlebot3_navigation2/param/humble/burger.yaml
 ```
-/root/turtlebot3_ws/install/my_robot_bringup/share/my_robot_bringup/config/nav2_params_override.yaml
+scroll to this part:
+```bash
+    general_goal_checker:
+      stateful: True
+      plugin: "nav2_controller::SimpleGoalChecker"
+      xy_goal_tolerance: 0.25
+      yaw_goal_tolerance: 0.25
 ```
-not in `src/`. That's intentional, not an oversight: `nav2_params_override.yaml` in `src/` is the generic Nav2 config used by other navigation setups in this workspace, where a real `yaw_goal_tolerance` still matters, so it can't be loosened there. The tradeoff is that **any `colcon build` will overwrite the install copy from `src/` and silently undo this**, `yaw_goal_tolerance` will go back to its normal value and yaw will matter again for waypoint missions. After any rebuild, re-apply the `2π` edit to the install file before running `waypoint_follower`.
-
-**`nav_demo.launch.py` no longer starts this automatically** (removed to keep Nav2 usable on its own while tuning localization, without a mission firing off goals in the background). Run it yourself in a second terminal instead:
+edit `yaw_goal_tolerence` to 6.283 then press ctrl+x then press y then ENTER.
 
 **Terminal 1:**
 ```bash
 ros2 launch my_robot_bringup nav_demo.launch.py
 ```
-Give a 2D Pose Estimate in RViz once it's up.
+Give a 2D Pose Estimate at the turtlebot position in RViz once it's up.
 
 **Terminal 2:**
 ```bash
