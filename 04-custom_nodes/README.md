@@ -83,7 +83,7 @@ scroll to this part:
       xy_goal_tolerance: 0.25
       yaw_goal_tolerance: 0.25
 ```
-edit `yaw_goal_tolerence` to 6.283 then press ctrl+x then press y then ENTER.
+edit `yaw_goal_tolerence` to 6.283 then press ctrl+X then press Y then ENTER.
 
 **Note**: remember to edit this value back to 0.25 after you finish this application since its used by all other navigation applications through `turtlebot3_navigation2` node.
 
