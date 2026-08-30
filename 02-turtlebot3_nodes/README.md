@@ -28,11 +28,9 @@ ros2 pkg executables <package_name>    # every ros2 run-able node in a given pac
 ---
 
 ## Used in simulation
-Before running and trying differenet nodes, first make sure to open the container from the image downloaded in section 01 as follows:
+Before running and trying differenet nodes, first make sure to open the container from the image downloaded in section 01 as follows, in WSL:
 ```bash
-cd ~/ROS2_Turtlebot3/docker
-docker compose up -d                 #run the container
-docker exec -it turtlebot3 bash      #open a new terminal in the container
+tb3
 ```
 ### `turtlebot3_teleop`
 
@@ -41,7 +39,7 @@ Manual keyboard control. One node:
 ros2 pkg executables turtlebot3_teleop
 # -> turtlebot3_teleop teleop_keyboard
 ```
-Run the simulation as described in section [`01-8`](../01-introduction/) then open new WSL terminal and open a new terminal in the container using `docker exec -it turtlebot3 bash`:
+Run the simulation as described in section [`01-8`](../01-introduction/) then open new WSL terminal and open a new terminal in the container using `tb3`:
 ```bash
 ros2 run turtlebot3_teleop teleop_keyboard
 ```
