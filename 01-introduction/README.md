@@ -189,6 +189,31 @@ Gazebo should open (via WSLg, no extra X server setup needed) showing the
 warehouse with TurtleBot3 spawned inside it. See folders `02` through `04`
 for the rest of the project once this is confirmed working.
 
+## 9. Opening a new terminal inside the container
+
+To create a shortcut for running the container and/or opening a new terminal inside it, open WSL then:
+```bash
+nano ~/.bashrc
+```
+then navigate to the bottom of the file and paste the following:
+```bash
+tb3() {
+    cd ~/turtlebot3-humble/docker/humble || return
+
+    docker compose up -d
+
+    docker exec -it turtlebot3 bash
+}
+```
+then press ctrl+x then press y then ENTER. Now in WSL:
+```bash
+source ~/.bashrc
+```
+As a result, whether you've ran the container or not, to open a new terminal in it simply type in any WSL terminal:
+```bash
+tb3
+```
+
 ## Repository Layout Reference
 
 ```
