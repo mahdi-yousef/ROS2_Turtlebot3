@@ -53,7 +53,7 @@ package itself at build time — no separate clone of that repo is needed.
 Build the image:
 ```bash
 cd docker
-docker build -t robotis/turtlebot3:humble-latest .
+docker build -t robotis/turtlebot3:humble .
 ```
 
 This installs ROS2 Humble desktop, Cartographer, Nav2, and hardware driver
